@@ -1,0 +1,249 @@
+
+test> use facultySystemsDb
+switched to db facultySystemsDb
+facultySystemsDb> db.createCollection("student")
+{ ok: 1 }
+facultySystemsDb> db.student.insertOne({firstName:"jana", LastName:"ahmad", age:21,facult:{name:"bis",address:"cairo"},grades:[{courseName:"programming",grade:99,pass:true},{courseName:"database",grade:89,pass:true}] , isFired:false})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68ad988c0700376c54eec4a9')
+}
+facultySystemsDb> db.student.insertMany([{FirstName:"ahmad",LastName:"khaled",age:22,faculty:{name:"business",address:"cairo"},grades:[{courseName:"accounting",grade:75,pass:true}],isFired:false},{FirstName:"nada",LastName:"mohamed",age:20,faculty:{name:"science",address:"alex"},grades[{courseName:"math",grade:60,pass:true},{courseName:"chemistry",grade:44,pass:false}],isFired:true}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:268)
+
+> 1 | db.student.insertMany([{FirstName:"ahmad",LastName:"khaled",age:22,faculty:{name:"business",address:"cairo"},grades:[{courseName:"accounting",grade:75,pass:true}],isFired:false},{FirstName:"nada",LastName:"mohamed",age:20,faculty:{name:"science",address:"alex"},grades[{courseName:"math",grade:60,pass:true},{courseName:"chemistry",grade:44,pass:false}],isFired:true}])
+    |                                                                                                                                                                                                                                                                             ^
+  2 |
+
+facultySystemsDb> db.student.insertMany([{firstName:"ahmed",LastNmae:"khaled" , age: 22 ,faculty:{name:"business",address:"cairo"},grades:[{courseName:"accounting",grade:75,pass:true}],isFired:false},{firstName:"nada",LastName:"khaled",age:20,faculty:{name:"science",address:"alex"},grades:[{courseName:"math",grade:90,pass:true}],isFired:true}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68ad9c3b0700376c54eec4aa'),
+    '1': ObjectId('68ad9c3b0700376c54eec4ab')
+  }
+}
+facultySystemsDb> db.student.find()
+[
+  {
+    _id: ObjectId('68ad988c0700376c54eec4a9'),
+    firstName: 'jana',
+    LastName: 'ahmad',
+    age: 21,
+    facult: { name: 'bis', address: 'cairo' },
+    grades: [
+      { courseName: 'programming', grade: 99, pass: true },
+      { courseName: 'database', grade: 89, pass: true }
+    ],
+    isFired: false
+  },
+  {
+    _id: ObjectId('68ad9c3b0700376c54eec4aa'),
+    firstName: 'ahmed',
+    LastNmae: 'khaled',
+    age: 22,
+    faculty: { name: 'business', address: 'cairo' },
+    grades: [ { courseName: 'accounting', grade: 75, pass: true } ],
+    isFired: false
+  },
+  {
+    _id: ObjectId('68ad9c3b0700376c54eec4ab'),
+    firstName: 'nada',
+    LastName: 'khaled',
+    age: 20,
+    faculty: { name: 'science', address: 'alex' },
+    grades: [ { courseName: 'math', grade: 90, pass: true } ],
+    isFired: true
+  }
+]
+facultySystemsDb> db.student.find({firstName:"jana"})
+[
+  {
+    _id: ObjectId('68ad988c0700376c54eec4a9'),
+    firstName: 'jana',
+    LastName: 'ahmad',
+    age: 21,
+    facult: { name: 'bis', address: 'cairo' },
+    grades: [
+      { courseName: 'programming', grade: 99, pass: true },
+      { courseName: 'database', grade: 89, pass: true }
+    ],
+    isFired: false
+  }
+]
+facultySystemsDb> db.student.find({$or:[{firstName:"ahmed"},{LastName:"ahmad"}]})
+[ncaught:
+  {taxError: Unexpected token, expected "," (1:20)
+    _id: ObjectId('68ad988c0700376c54eec4a9'),
+    firstName: 'jana',,$or[{firstName:"ahmed"},{LastName:"ahmad"}]})
+    LastName: 'ahmad',,   ^
+    age: 21,
+    facult: { name: 'bis', address: 'cairo' },ro' },
+    grades: [ { courseName: 'accounting', grade: 75, pass: true } ],
+      { courseName: 'programming', grade: 99, pass: true },
+      { courseName: 'database', grade: 89, pass: true }
+    ],
+    isFired: false
+  },
+  {
+    _id: ObjectId('68ad9c3b0700376c54eec4aa'),
+    firstName: 'ahmed',
+    LastNmae: 'khaled',
+    age: 22,
+    faculty: { name: 'business', address: 'cairo' },
+    grades: [ { courseName: 'accounting', grade: 75, pass: true } ],
+    isFired: false
+  }
+]
+facultySystemsDb> db.student.find({firstName:{$ne:"ahmed"}})
+[
+  {
+    _id: ObjectId('68ad988c0700376c54eec4a9'),
+    firstName: 'jana',
+    LastName: 'ahmad',
+    age: 21,
+    facult: { name: 'bis', address: 'cairo' },
+    grades: [
+      { courseName: 'programming', grade: 99, pass: true },
+      { courseName: 'database', grade: 89, pass: true }
+    ],
+    isFired: false
+  },
+  {
+    _id: ObjectId('68ad9c3b0700376c54eec4ab'),
+    firstName: 'nada',
+    LastName: 'khaled',
+    age: 20,
+    faculty: { name: 'science', address: 'alex' },
+    grades: [ { courseName: 'math', grade: 90, pass: true } ],
+    isFired: true
+  }
+]
+facultySystemsDb> db.student.find({FirstName:{$ne:"ahmed"}})
+[ypeError: db.student.finf is not a function
+  {
+    _id: ObjectId('68ad988c0700376c54eec4a9'),
+    firstName: 'jana',
+    LastName: 'ahmad',
+    age: 21,
+    facult: { name: 'bis', address: 'cairo' },
+    grades: [
+      { courseName: 'programming', grade: 99, pass: true },
+      { courseName: 'database', grade: 89, pass: true }
+    ],
+    isFired: false
+  },
+  {
+    _id: ObjectId('68ad9c3b0700376c54eec4aa'),
+    firstName: 'ahmed',
+    LastNmae: 'khaled',
+    age: 22,
+    faculty: { name: 'business', address: 'cairo' },
+    grades: [ { courseName: 'accounting', grade: 75, pass: true } ],
+    isFired: false
+  },
+  {
+    _id: ObjectId('68ad9c3b0700376c54eec4ab'),
+    firstName: 'nada',
+    LastName: 'khaled',
+    age: 20,
+    faculty: { name: 'science', address: 'alex' },
+    grades: [ { courseName: 'math', grade: 90, pass: true } ],
+    isFired: true
+  }
+]
+facultySystemsDb> db.student.find({age:{$lt:21}})
+[
+  {
+    _id: ObjectId('68ad9c3b0700376c54eec4ab'),
+    firstName: 'nada',
+    LastName: 'khaled',
+    age: 20,
+    faculty: { name: 'science', address: 'alex' },
+    grades: [ { courseName: 'math', grade: 90, pass: true } ],
+    isFired: true
+  }
+]
+facultySystemsDb> db.student.find({age:{$gte:20},faculty:{$ne:null}})
+[
+  {
+    _id: ObjectId('68ad9c3b0700376c54eec4aa'),
+    firstName: 'ahmed',
+    LastNmae: 'khaled',
+    age: 22,
+    faculty: { name: 'business', address: 'cairo' },
+    grades: [ { courseName: 'accounting', grade: 75, pass: true } ],
+    isFired: false
+  },
+  {
+    _id: ObjectId('68ad9c3b0700376c54eec4ab'),
+    firstName: 'nada',
+    LastName: 'khaled',
+    age: 20,
+    faculty: { name: 'science', address: 'alex' },
+    grades: [ { courseName: 'math', grade: 90, pass: true } ],
+    isFired: true
+  }
+]
+facultySystemsDb> db.student.updateOne({ FirstName: "Ahmed" },{ $set: { LastName: "Mahmoud" } })
+{
+  acknowledged: true,
+  insertedId: null,68ad988c0700376c54eec4a9'),
+  matchedCount: 1,na',
+  modifiedCount: 1,d',
+  upsertedCount: 0
+} }
+]
+
+facultySystemsDb> db.student.deleteMany({ IsFired: true })
+{ acknowledged: true, deletedCount: 1 }
+  acknowledged: true,
+  insertedId: null,68ad988c0700376c54eec4a9'),
+  matchedCount: 1,na',
+  modifiedCount: 1,d',
+  upsertedCount: 0
+} }
+]
+facultySystemsDb> db.student.drop()
+trueknowledged: true, deletedCount: 1 }
+  acknowledged: true,
+  insertedId: null,68ad988c0700376c54eec4a9'),
+  matchedCount: 1,na',
+  modifiedCount: 1,d',
+  upsertedCount: 0
+} }
+]
+
+facultySystemsDb> db.dropDatabase()
+{ ok: 1, dropped: 'facultySystemsDb' }}
+  acknowledged: true,
+  insertedId: null,68ad988c0700376c54eec4a9'),
+  matchedCount: 1,na',
+  modifiedCount: 1,d',
+  upsertedCount: 0
+} }
+]
+
+facultySystem2> use facultySystem2
+already on db facultySystem2
+facultySystem2> db.student.insertOne({firstName:"malek" , lastName :"zaki",isFired:false,facultyId:1,courses:[{courseId:1,grade:90},{courseId:2,grade:80}]})
+{
+  "acknowledged": true,
+  "insertedId": ObjectId("64e8b8c6f4a123456789abcd")
+}
+facultySystem2>  db.faculty.insertOne({facultyId:1,name:"business",address:"cairo"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('68ada9ba0700376c54eec4ac')
+}
+facultySystem2> db.course.insertMany([{courseId:1 , name :"accounting",finalMark:100},{courseId:2 , name: "marketing",finalMark:100}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68adaa4d0700376c54eec4ad'),
+    '1': ObjectId('68adaa4d0700376c54eec4ae')
+  }
+}
+facultySystem2>
+
