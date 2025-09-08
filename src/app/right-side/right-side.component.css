@@ -1,0 +1,36 @@
+.right-side {
+ flex: 1;
+  height: 100%;
+  background-color: #f0ecec;
+  padding: 20px;
+  min-height: 100vh;
+  justify-content: center;
+  text-align: left;
+
+}
+
+.section {
+  margin-bottom: 70px;
+  
+}
+
+.section h3 {
+  border-bottom: 2px solid #05224d;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  color: #05224d;
+}
+.section p{
+  font-size: 20px;
+}
+
+.section ul {
+  list-style: none;
+  padding: 0;
+  font-size: larger;
+}
+
+.section li {
+  margin-bottom: 5px;
+}

@@ -1,0 +1,22 @@
+.content {
+  display: flex;             
+  align-items: flex-start;   
+  min-height: calc(100vh - 180px);
+  
+}
+
+.left-side {
+  width: 450px;             
+  flex-shrink: 0;            
+  background-color: #d1d0d0;  
+  /* padding: 15px; */
+  box-sizing: border-box;
+  padding-top: 150px;
+}
+
+.right-side {
+  flex: 1;                   
+  background-color: #f0ecec;  
+  padding: 20px;
+  box-sizing: border-box;
+}
