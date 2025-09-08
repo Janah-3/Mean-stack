@@ -1,0 +1,10 @@
+<ul *ngIf = "products.length > 0; else noProducts">
+    <li *ngFor="let product of products" appAppHighlight>{{product}}</li>
+</ul>
+
+
+<ng-template #noProducts>
+  <p>No products available</p>
+</ng-template>
+
+

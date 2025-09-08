@@ -1,0 +1,15 @@
+<img [src]="profile_img" alt=""><br>
+
+<div id="info">
+<p>Name : {{name}}</p>
+<p>email : {{email}}</p>
+<p>title : {{title}}</p>
+</div>
+<button (click)="change_visibiltiy()">click me</button>
+<button [disabled]="isDisplayed" (click)="count()">click</button>
+<p>{{i}} clicks</p>
+<br>
+<label for="name">name</label>
+<input type="text" [(ngModel)] = "name"><br>
+<label for="email">email</label>
+<input type="text" [(ngModel)] = "email">
